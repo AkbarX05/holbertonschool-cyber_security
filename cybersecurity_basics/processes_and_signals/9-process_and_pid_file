@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+# Creates a PID file, loops forever, and handles signals
+
+echo $$ > /tmp/my_script.pid
+
+trap 'echo "Y U no love me?!"' SIGINT
+trap 'echo "I hate the kill command"; rm -f /tmp/my_script.pid; exit' SIGTERM
+trap 'rm -f /tmp/my_script.pid; exit' SIGQUIT
+
+while true
+do
+	echo "To infinity and beyond"
+	sleep 1
+done
