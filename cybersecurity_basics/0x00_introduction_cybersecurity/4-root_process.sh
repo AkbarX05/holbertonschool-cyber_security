@@ -1,1 +1,2 @@
-ps -u "$1" -F | grep -vE "(\s+0\s+0\s+)"
+#!/bin/bash
+ps aux | grep "^$1 " | grep -v '^[ ]' | awk '$5 > 0 && $6 > 0 { print }'
